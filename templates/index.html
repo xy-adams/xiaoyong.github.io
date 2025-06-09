@@ -42,13 +42,25 @@
 {% if total_pages > 1 %}
 <div class="pagination">
     {% if has_prev %}
-    <a href="?page={{ page - 1 }}">&laquo; 上一页</a>
+    {% if search_query %}
+    <a href="{{ url_for('search', q=search_query, page=page-1) }}">&laquo; 上一页</a>
+    {% elif category %}
+    <a href="{{ url_for('category', category=category, page=page-1) }}">&laquo; 上一页</a>
+    {% else %}
+    <a href="{{ url_for('index', page=page-1) }}">&laquo; 上一页</a>
+    {% endif %}
     {% endif %}
     
     <span>第 {{ page }} 页，共 {{ total_pages }} 页</span>
     
     {% if has_next %}
-    <a href="?page={{ page + 1 }}">下一页 &raquo;</a>
+    {% if search_query %}
+    <a href="{{ url_for('search', q=search_query, page=page+1) }}">下一页 &raquo;</a>
+    {% elif category %}
+    <a href="{{ url_for('category', category=category, page=page+1) }}">下一页 &raquo;</a>
+    {% else %}
+    <a href="{{ url_for('index', page=page+1) }}">下一页 &raquo;</a>
+    {% endif %}
     {% endif %}
 </div>
 {% endif %}

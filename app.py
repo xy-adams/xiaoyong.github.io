@@ -78,16 +78,43 @@ def post(slug):
 @app.route('/category/<category>')
 def category(category):
     """分类页面"""
+    page = request.args.get('page', 1, type=int)
     posts = get_posts()
     filtered_posts = [post for post in posts if post['category'] == category]
-    return render_template('index.html', posts=filtered_posts, category=category)
+    
+    # 分页
+    per_page = app.config['POSTS_PER_PAGE']
+    start = (page - 1) * per_page
+    end = start + per_page
+    posts_page = filtered_posts[start:end]
+    
+    # 计算分页信息
+    total_pages = (len(filtered_posts) + per_page - 1) // per_page
+    has_prev = page > 1
+    has_next = page < total_pages
+    
+    return render_template('index.html', 
+                         posts=posts_page,
+                         category=category,
+                         page=page,
+                         total_pages=total_pages,
+                         has_prev=has_prev,
+                         has_next=has_next)
 
 @app.route('/search')
 def search():
     """搜索功能"""
     query = request.args.get('q', '')
+    page = request.args.get('page', 1, type=int)
+    
     if not query:
-        return render_template('index.html', posts=[])
+        return render_template('index.html', 
+                             posts=[], 
+                             search_query=query,
+                             page=1,
+                             total_pages=1,
+                             has_prev=False,
+                             has_next=False)
     
     posts = get_posts()
     filtered_posts = []
@@ -98,7 +125,24 @@ def search():
             any(query.lower() in tag.lower() for tag in post['tags'])):
             filtered_posts.append(post)
     
-    return render_template('index.html', posts=filtered_posts, search_query=query)
+    # 分页
+    per_page = app.config['POSTS_PER_PAGE']
+    start = (page - 1) * per_page
+    end = start + per_page
+    posts_page = filtered_posts[start:end]
+    
+    # 计算分页信息
+    total_pages = (len(filtered_posts) + per_page - 1) // per_page
+    has_prev = page > 1
+    has_next = page < total_pages
+    
+    return render_template('index.html', 
+                         posts=posts_page, 
+                         search_query=query,
+                         page=page,
+                         total_pages=total_pages,
+                         has_prev=has_prev,
+                         has_next=has_next)
 
 @app.route('/about')
 def about():

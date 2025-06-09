@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="search-box">
+    <form action="{{ url_for('search') }}" method="GET">
+        <input type="text" name="q" placeholder="搜索文章..." value="{{ search_query or '' }}">
+        <button type="submit">搜索</button>
+    </form>
+</div>
+
+{% if category %}
+<h2>分类：{{ category }}</h2>
+{% endif %}
+
+{% if search_query %}
+<h2>搜索结果：{{ search_query }}</h2>
+{% endif %}
+
+<div class="posts">
+    {% for post in posts %}
+    <article class="post-preview">
+        <h2><a href="{{ url_for('post', slug=post.slug) }}">{{ post.title }}</a></h2>
+        <div class="post-meta">
+            <span class="date">{{ post.date.strftime('%Y-%m-%d') }}</span>
+            <span class="category">
+                <a href="{{ url_for('category', category=post.category) }}">{{ post.category }}</a>
+            </span>
+            {% if post.tags %}
+            <div class="tags">
+                {% for tag in post.tags %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="excerpt">{{ post.excerpt }}</div>
+        <a href="{{ url_for('post', slug=post.slug) }}" class="read-more">阅读全文</a>
+    </article>
+    {% endfor %}
+</div>
+
+{% if total_pages > 1 %}
+<div class="pagination">
+    {% if has_prev %}
+    <a href="?page={{ page - 1 }}">&laquo; 上一页</a>
+    {% endif %}
+    
+    <span>第 {{ page }} 页，共 {{ total_pages }} 页</span>
+    
+    {% if has_next %}
+    <a href="?page={{ page + 1 }}">下一页 &raquo;</a>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}

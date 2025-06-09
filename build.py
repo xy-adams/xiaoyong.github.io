@@ -1,4 +1,4 @@
-from frozen_flask import Freezer
+from flask_frozen import Freezer
 from app import app
 import os
 import shutil

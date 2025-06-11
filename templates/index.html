@@ -1,67 +1,134 @@
 {% extends "base.html" %}
 
+{% block title %}{{ config.SITE_TITLE }} - {{ config.SITE_DESCRIPTION }}{% endblock %}
+
 {% block content %}
-<div class="search-box">
-    <form action="{{ url_for('search') }}" method="GET">
-        <input type="text" name="q" placeholder="搜索文章..." value="{{ search_query or '' }}">
-        <button type="submit">搜索</button>
-    </form>
-</div>
-
-{% if category %}
-<h2>分类：{{ category }}</h2>
-{% endif %}
-
-{% if search_query %}
-<h2>搜索结果：{{ search_query }}</h2>
-{% endif %}
-
-<div class="posts">
-    {% for post in posts %}
-    <article class="post-preview">
-        <h2><a href="{{ url_for('post', slug=post.slug) }}">{{ post.title }}</a></h2>
-        <div class="post-meta">
-            <span class="date">{{ post.date.strftime('%Y-%m-%d') }}</span>
-            <span class="category">
-                <a href="{{ url_for('category', category=post.category) }}">{{ post.category }}</a>
-            </span>
-            {% if post.tags %}
-            <div class="tags">
-                {% for tag in post.tags %}
-                <span class="tag">{{ tag }}</span>
-                {% endfor %}
+<!-- 英雄区域 -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">你好，我是 <span class="highlight">{{ config.AUTHOR_NAME }}</span></h1>
+                <h2 class="hero-subtitle">{{ config.AUTHOR_TITLE }}</h2>
+                <p class="hero-description">
+                    欢迎来到我的个人网站！我是一名充满热情的软件开发工程师，
+                    专注于创建优雅、高效的解决方案。我热爱学习新技术，
+                    并享受将创意想法转化为现实的过程。
+                </p>
+                <div class="hero-buttons">
+                    <a href="{{ url_for('about') }}" class="btn btn-primary">了解更多</a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-secondary">联系我</a>
+                </div>
             </div>
-            {% endif %}
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="{{ config.AUTHOR_NAME }}的头像">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="excerpt">{{ post.excerpt }}</div>
-        <a href="{{ url_for('post', slug=post.slug) }}" class="read-more">阅读全文</a>
-    </article>
-    {% endfor %}
-</div>
+    </div>
+</section>
 
-{% if total_pages > 1 %}
-<div class="pagination">
-    {% if has_prev %}
-    {% if search_query %}
-    <a href="{{ url_for('search', q=search_query, page=page-1) }}">&laquo; 上一页</a>
-    {% elif category %}
-    <a href="{{ url_for('category', category=category, page=page-1) }}">&laquo; 上一页</a>
-    {% else %}
-    <a href="{{ url_for('index', page=page-1) }}">&laquo; 上一页</a>
-    {% endif %}
-    {% endif %}
-    
-    <span>第 {{ page }} 页，共 {{ total_pages }} 页</span>
-    
-    {% if has_next %}
-    {% if search_query %}
-    <a href="{{ url_for('search', q=search_query, page=page+1) }}">下一页 &raquo;</a>
-    {% elif category %}
-    <a href="{{ url_for('category', category=category, page=page+1) }}">下一页 &raquo;</a>
-    {% else %}
-    <a href="{{ url_for('index', page=page+1) }}">下一页 &raquo;</a>
-    {% endif %}
-    {% endif %}
-</div>
-{% endif %}
+<!-- 技能区域 -->
+<section class="skills">
+    <div class="container">
+        <h2 class="section-title">技能专长</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-python"></i>
+                </div>
+                <h3>Python开发</h3>
+                <p>熟练使用Python进行后端开发、数据分析和自动化脚本编写</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-js-square"></i>
+                </div>
+                <h3>前端开发</h3>
+                <p>精通HTML、CSS、JavaScript，熟悉现代前端框架和工具</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>数据库设计</h3>
+                <p>擅长关系型和非关系型数据库的设计、优化和管理</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-aws"></i>
+                </div>
+                <h3>云服务</h3>
+                <p>熟悉AWS、Azure等云平台，具备DevOps和容器化经验</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 亮点区域 -->
+<section class="highlights">
+    <div class="container">
+        <div class="highlights-grid">
+            <div class="highlight-item">
+                <div class="highlight-number">5+</div>
+                <div class="highlight-text">年开发经验</div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-number">20+</div>
+                <div class="highlight-text">完成项目</div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-number">10+</div>
+                <div class="highlight-text">技术栈</div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-number">100%</div>
+                <div class="highlight-text">客户满意度</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 最新项目预览 -->
+<section class="recent-projects">
+    <div class="container">
+        <h2 class="section-title">精选项目</h2>
+        <div class="projects-preview">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="{{ url_for('static', filename='images/project1.jpg') }}" alt="项目1">
+                </div>
+                <div class="project-content">
+                    <h3>电商网站开发</h3>
+                    <p>使用React和Node.js构建的现代化电商平台，包含完整的购物车、支付和用户管理功能。</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="{{ url_for('static', filename='images/project2.jpg') }}" alt="项目2">
+                </div>
+                <div class="project-content">
+                    <h3>数据分析平台</h3>
+                    <p>基于Python和机器学习的数据分析平台，为企业提供智能化的数据洞察和预测分析。</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">ML</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="projects-cta">
+            <a href="{{ url_for('projects') }}" class="btn btn-outline">查看所有项目</a>
+        </div>
+    </div>
+</section>
 {% endblock %}

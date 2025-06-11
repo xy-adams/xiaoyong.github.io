@@ -3,36 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{ config.BLOG_TITLE }}{% endblock %}</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+    <title>{% block title %}{{ config.SITE_TITLE }}{% endblock %}</title>
+    <meta name="description" content="{{ config.SITE_DESCRIPTION }}">
+    
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1><a href="{{ url_for('index') }}">{{ config.BLOG_TITLE }}</a></h1>
-            <p>{{ config.BLOG_DESCRIPTION }}</p>
-            <nav>
-                <a href="{{ url_for('index') }}">首页</a>
-                <a href="{{ url_for('about') }}">关于</a>
-            </nav>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="{{ url_for('index') }}">{{ config.AUTHOR_NAME }}</a>
+            </div>
+            <div class="nav-menu">
+                <a href="{{ url_for('index') }}" class="nav-link">首页</a>
+                <a href="{{ url_for('about') }}" class="nav-link">关于我</a>
+                <a href="{{ url_for('projects') }}" class="nav-link">项目</a>
+                <a href="{{ url_for('contact') }}" class="nav-link">联系我</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <main class="main">
-        <div class="container">
-            {% block content %}{% endblock %}
-        </div>
+    <!-- 主要内容 -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
     </main>
 
+    <!-- 页脚 -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 {{ config.AUTHOR_NAME }}. All rights reserved.</p>
+            <div class="footer-content">
+                <p>&copy; 2024 {{ config.AUTHOR_NAME }}. 保留所有权利。</p>
+                <div class="social-links">
+                    <a href="{{ config.GITHUB_URL }}" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="{{ config.LINKEDIN_URL }}" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:{{ config.AUTHOR_EMAIL }}">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+    <!-- JavaScript -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

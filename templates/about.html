@@ -1,19 +1,164 @@
 {% extends "base.html" %}
 
-{% block title %}关于 - {{ config.BLOG_TITLE }}{% endblock %}
+{% block title %}关于我 - {{ config.SITE_TITLE }}{% endblock %}
 
 {% block content %}
-<div class="about">
-    <h1>关于我</h1>
-    <p>这里是个人介绍，你可以修改这部分内容来介绍自己。</p>
-    
-    <h2>联系方式</h2>
-    <ul>
-        <li>Email: your-email@example.com</li>
-        <li>GitHub: https://github.com/your-username</li>
-    </ul>
-    
-    <h2>关于本站</h2>
-    <p>这是一个基于Python Flask构建的个人博客，部署在GitHub Pages上。</p>
+<div class="about-page">
+    <div class="container">
+        <!-- 个人简介区域 -->
+        <section class="about-intro">
+            <div class="about-content">
+                <div class="about-text">
+                    <h1>关于我</h1>
+                    <h2 class="about-subtitle">{{ config.AUTHOR_TITLE }}</h2>
+                    <p class="about-description">
+                        我是一名充满热情的软件开发工程师，拥有超过5年的开发经验。
+                        我专注于创建高质量、可扩展的软件解决方案，并始终保持对新技术的学习热情。
+                        我相信技术的力量可以改变世界，也希望通过我的工作为社会创造价值。
+                    </p>
+                    <p>
+                        在我的职业生涯中，我参与了多个大型项目的开发，从Web应用到移动应用，
+                        从数据分析平台到机器学习系统。我享受解决复杂问题的过程，
+                        也热爱与团队合作共同创造优秀的产品。
+                    </p>
+                </div>
+                <div class="about-image">
+                    <img src="{{ url_for('static', filename='images/about-me.jpg') }}" alt="{{ config.AUTHOR_NAME }}">
+                </div>
+            </div>
+        </section>
+
+        <!-- 技能详情 -->
+        <section class="skills-detail">
+            <h2>技术栈</h2>
+            <div class="skills-categories">
+                <div class="skill-category">
+                    <h3>编程语言</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>前端技术</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Sass</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>后端技术</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">FastAPI</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>数据库</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Redis</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>工具与平台</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Jenkins</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 工作经历 -->
+        <section class="experience">
+            <h2>工作经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 - 至今</div>
+                    <div class="timeline-content">
+                        <h3>高级软件开发工程师</h3>
+                        <h4>科技创新公司</h4>
+                        <p>负责公司核心产品的架构设计和开发，领导团队完成多个重要项目。
+                           参与技术选型和系统优化，提升了系统性能50%以上。</p>
+                        <ul>
+                            <li>设计并实现了微服务架构，提高了系统的可扩展性</li>
+                            <li>优化数据库查询，将响应时间减少了60%</li>
+                            <li>指导初级开发者，建立了代码审查制度</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2019 - 2021</div>
+                    <div class="timeline-content">
+                        <h3>软件开发工程师</h3>
+                        <h4>互联网公司</h4>
+                        <p>参与多个Web应用的开发，负责前后端功能实现和性能优化。
+                           与产品团队紧密合作，确保产品功能的高质量交付。</p>
+                        <ul>
+                            <li>开发了用户管理系统，支持10万+用户并发</li>
+                            <li>实现了实时数据同步功能</li>
+                            <li>参与移动端API的设计和开发</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教育背景 -->
+        <section class="education">
+            <h2>教育背景</h2>
+            <div class="education-item">
+                <div class="education-content">
+                    <h3>计算机科学与技术学士学位</h3>
+                    <h4>XX大学</h4>
+                    <span class="education-date">2015 - 2019</span>
+                    <p>主修课程包括数据结构、算法、数据库系统、软件工程等。
+                       在校期间参与了多个编程竞赛，获得了优异成绩。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 兴趣爱好 -->
+        <section class="interests">
+            <h2>兴趣爱好</h2>
+            <div class="interests-grid">
+                <div class="interest-item">
+                    <i class="fas fa-code"></i>
+                    <h3>开源贡献</h3>
+                    <p>积极参与开源项目，为社区贡献代码</p>
+                </div>
+                <div class="interest-item">
+                    <i class="fas fa-book"></i>
+                    <h3>技术写作</h3>
+                    <p>喜欢分享技术心得，撰写技术博客</p>
+                </div>
+                <div class="interest-item">
+                    <i class="fas fa-music"></i>
+                    <h3>音乐</h3>
+                    <p>热爱音乐，会弹奏吉他和钢琴</p>
+                </div>
+                <div class="interest-item">
+                    <i class="fas fa-camera"></i>
+                    <h3>摄影</h3>
+                    <p>喜欢用镜头记录生活中的美好瞬间</p>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
 {% endblock %}

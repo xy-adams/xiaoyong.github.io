@@ -3,92 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人博客</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
-    <link href="/static/css/style.css" rel="stylesheet">
+    <title>小永的个人主页 - 欢迎来到我的个人网站</title>
+    <meta name="description" content="欢迎来到我的个人网站">
+    
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1><a href="/">我的个人博客</a></h1>
-            <p>分享技术与生活</p>
-            <nav>
-                <a href="/">首页</a>
-                <a href="/about">关于</a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="main">
-        <div class="container">
-            
-<div class="search-box">
-    <form action="/search" method="GET">
-        <input type="text" name="q" placeholder="搜索文章..." value="">
-        <button type="submit">搜索</button>
-    </form>
-</div>
-
-
-
-
-
-<div class="posts">
-    
-    <article class="post-preview">
-        <h2><a href="/post/hello-world">Hello World - 我的第一篇博客</a></h2>
-        <div class="post-meta">
-            <span class="date">2024-01-01</span>
-            <span class="category">
-                <a href="/category/%E6%97%A5%E8%AE%B0">日记</a>
-            </span>
-            
-            <div class="tags">
-                
-                <span class="tag">开始</span>
-                
-                <span class="tag">博客</span>
-                
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">小永</a>
             </div>
-            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="about.html" class="nav-link">关于我</a>
+                <a href="projects.html" class="nav-link">项目</a>
+                <a href="contact.html" class="nav-link">联系我</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
-        <div class="excerpt"># 欢迎来到我的博客
+    </nav>
 
-这是我的第一篇博客文章。在这里我会分享我的技术学习心得和生活感悟。
-
-## 关于这个博客
-
-这个博客是用Python Flask构建的，具有以下特性：
-
-- 支持Markdown写作
-- 响应式设计
-- 代码高亮
-- 分类和标签
-- 搜索功能
-- 自动部署到GitHub Pages
-
-## 技术栈
-
-- **后端**: Python Flask
-- **前端**: HTML...</div>
-        <a href="/post/hello-world" class="read-more">阅读全文</a>
-    </article>
-    
-</div>
-
-
-
+    <!-- 主要内容 -->
+    <main class="main-content">
+        
+<!-- 英雄区域 -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">你好，我是 <span class="highlight">小永</span></h1>
+                <h2 class="hero-subtitle">软件开发工程师</h2>
+                <p class="hero-description">
+                    欢迎来到我的个人网站！我是一名充满热情的软件开发工程师，
+                    专注于创建优雅、高效的解决方案。我热爱学习新技术，
+                    并享受将创意想法转化为现实的过程。
+                </p>
+                <div class="hero-buttons">
+                    <a href="about.html" class="btn btn-primary">了解更多</a>
+                    <a href="contact.html" class="btn btn-secondary">联系我</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <img src="static/images/profile.jpg" alt="小永的头像">
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
+
+<!-- 技能区域 -->
+<section class="skills">
+    <div class="container">
+        <h2 class="section-title">技能专长</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-python"></i>
+                </div>
+                <h3>Python开发</h3>
+                <p>熟练使用Python进行后端开发、数据分析和自动化脚本编写</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-js-square"></i>
+                </div>
+                <h3>前端开发</h3>
+                <p>精通HTML、CSS、JavaScript，熟悉现代前端框架和工具</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>数据库设计</h3>
+                <p>擅长关系型和非关系型数据库的设计、优化和管理</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fab fa-aws"></i>
+                </div>
+                <h3>云服务</h3>
+                <p>熟悉AWS、Azure等云平台，具备DevOps和容器化经验</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 亮点区域 -->
+<section class="highlights">
+    <div class="container">
+        <div class="highlights-grid">
+            <div class="highlight-item">
+                <div class="highlight-number">5+</div>
+                <div class="highlight-text">年开发经验</div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-number">20+</div>
+                <div class="highlight-text">完成项目</div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-number">10+</div>
+                <div class="highlight-text">技术栈</div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-number">100%</div>
+                <div class="highlight-text">客户满意度</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 最新项目预览 -->
+<section class="recent-projects">
+    <div class="container">
+        <h2 class="section-title">精选项目</h2>
+        <div class="projects-preview">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="static/images/project1.jpg" alt="项目1">
+                </div>
+                <div class="project-content">
+                    <h3>电商网站开发</h3>
+                    <p>使用React和Node.js构建的现代化电商平台，包含完整的购物车、支付和用户管理功能。</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="static/images/project2.jpg" alt="项目2">
+                </div>
+                <div class="project-content">
+                    <h3>数据分析平台</h3>
+                    <p>基于Python和机器学习的数据分析平台，为企业提供智能化的数据洞察和预测分析。</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">ML</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="projects-cta">
+            <a href="projects.html" class="btn btn-outline">查看所有项目</a>
+        </div>
+    </div>
+</section>
+
     </main>
 
+    <!-- 页脚 -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Your Name. All rights reserved.</p>
+            <div class="footer-content">
+                <p>&copy; 2024 小永. 保留所有权利。</p>
+                <div class="social-links">
+                    <a href="https://github.com/xiaoyong" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/xiaoyong" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:xiaoyong@example.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
-    <script src="/static/js/main.js"></script>
+    <!-- JavaScript -->
+    <script src="static/js/main.js"></script>
 </body>
 </html>
